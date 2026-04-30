@@ -1,0 +1,35 @@
+{
+  "name": "electron-nodejs-react-boilerplate",
+  "version": "0.0.0-dev",
+  "main": "dist/main/index.js",
+  "repository": "https://github.com/adrianoanschau/electron-nodejs-react-boilerplate",
+  "author": "Adriano",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "@vitest/ui": "4.1.5",
+    "concurrently": "^9.2.1",
+    "electron": "^41.3.0",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.10",
+    "vitest": "^4.1.5",
+    "wait-on": "^9.0.5"
+  },
+  "scripts": {
+    "dev": "concurrently \"vite --port 5173\" \"yarn dev:main\"",
+    "dev:main": "tsup --watch --onSuccess \"electron .\"",
+    "build": "vite build && tsc",
+    "test": "vitest",
+    "test:ui": "vitest --ui"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.105.1",
+    "dotenv": "^17.4.2",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  }
+}

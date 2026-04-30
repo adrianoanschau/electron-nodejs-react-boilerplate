@@ -1,0 +1,14 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color-scheme: dark light;
+  background-color: #242424;
+}
+
+body { margin: 0; display: flex; place-items: center; min-width: 320px; min-height: 100vh; }
+
+#root { max-width: 1280px; margin: 0 auto; padding: 2rem; text-align: center; }
+
+.logo { height: 6em; padding: 1.5em; will-change: filter; transition: filter 300ms; }
+.logo:hover { filter: drop-shadow(0 0 2em #646cffaa); }
+
+.card { padding: 2em; border-radius: 8px; background: #1a1a1a; border: 1px solid #333; }
