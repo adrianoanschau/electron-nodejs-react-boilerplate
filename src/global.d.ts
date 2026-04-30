@@ -1,8 +1,6 @@
-import type { SupabaseProductRepository } from '@/main/repositories';
+import { serviceRegistry } from "@/main/config/serviceRegistry";
 
-export interface IAppServices {
-  products: SupabaseProductRepository;
-}
+export type IAppServices = typeof serviceRegistry;
 
 declare global {
   interface IElectronAPI {

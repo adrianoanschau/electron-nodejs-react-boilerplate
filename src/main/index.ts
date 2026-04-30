@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron'
 import path from 'path'
-import { IPCManager } from './IPCManager'
-import { SupabaseProductRepository } from './repositories/SupabaseProductRepository'
+import { IPCManager } from './config/IPCManager'
+import { serviceRegistry } from './config/serviceRegistry'
 import 'dotenv/config'
 
 function createWindow() {
@@ -22,8 +22,9 @@ function createWindow() {
     }
   })
 
-  const productRepo = new SupabaseProductRepository()
-  IPCManager.registerService('products', productRepo)
+  Object.entries(serviceRegistry).forEach(([channel, instance]) => {
+    IPCManager.registerService(channel, instance);
+  });
 
   if (process.env.NODE_ENV === 'development' || !app.isPackaged) {
     mainWindow.loadURL('http://localhost:5173')

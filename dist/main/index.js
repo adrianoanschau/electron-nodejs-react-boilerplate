@@ -60,6 +60,11 @@ var SupabaseProductRepository = class {
   }
 };
 
+// src/main/config/services.ts
+var serviceRegistry = {
+  products: new SupabaseProductRepository()
+};
+
 // src/main/index.ts
 var import_config2 = require("dotenv/config");
 function createWindow() {
@@ -79,8 +84,9 @@ function createWindow() {
       sandbox: true
     }
   });
-  const productRepo = new SupabaseProductRepository();
-  IPCManager.registerService("products", productRepo);
+  Object.entries(serviceRegistry).forEach(([channel, instance]) => {
+    IPCManager.registerService(channel, instance);
+  });
   if (process.env.NODE_ENV === "development" || !import_electron2.app.isPackaged) {
     mainWindow.loadURL("http://localhost:5173");
   } else {

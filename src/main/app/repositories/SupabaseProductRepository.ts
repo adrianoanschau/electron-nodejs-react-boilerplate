@@ -1,4 +1,4 @@
-import { supabase } from '@/main/services/supabase'
+import { supabase } from '@/main/app/services/supabase'
 import { IBaseRepository } from '@/core/domain/IBaseRepository'
 
 export class SupabaseProductRepository implements IBaseRepository<any> {
