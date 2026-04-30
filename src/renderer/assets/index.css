@@ -1,14 +1,56 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  color-scheme: dark light;
-  background-color: #242424;
+@import "tailwindcss";
+
+/* 1. Definição do Tema (Estilo v4) */
+@theme {
+  --color-brand-dark: #1a1a1a;
+  --color-brand-bg: #242424;
+  --color-brand-accent: #f8f8fd;
+  --color-brand-border: #333333;
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
-body { margin: 0; display: flex; place-items: center; min-width: 320px; min-height: 100vh; }
+/* 2. Base e Reset */
+@layer base {
+  :root {
+    color-scheme: dark light;
+  }
 
-#root { max-width: 1280px; margin: 0 auto; padding: 2rem; text-align: center; }
+  body {
+    @apply m-0 flex flex-col min-w-[320px] min-h-screen overflow-hidden bg-brand-bg text-white antialiased;
+  }
 
-.logo { height: 6em; padding: 1.5em; will-change: filter; transition: filter 300ms; }
-.logo:hover { filter: drop-shadow(0 0 2em #646cffaa); }
+  #root {
+    @apply flex flex-col w-full h-screen;
+  }
+}
 
-.card { padding: 2em; border-radius: 8px; background: #1a1a1a; border: 1px solid #333; }
+/* 3. Componentes de Infraestrutura (Electron Specific) */
+@layer components {
+  /* Barra de título integrada ao layout moderno */
+  .titlebar {
+    @apply h-[45px] bg-brand-dark flex items-center px-[15px] shrink-0 select-none border-b border-brand-border z-[9999] w-full;
+    /* Permite arrastar a janela - Propriedade nativa do Electron */
+    -webkit-app-region: drag;
+  }
+
+  /* Impede que elementos interativos bloqueiem o arraste */
+  .titlebar button, 
+  .titlebar a,
+  .titlebar .no-drag {
+    @apply cursor-default;
+    -webkit-app-region: no-drag;
+  }
+
+  /* Área de conteúdo principal com scroll independente */
+  .content {
+    @apply flex-1 overflow-y-auto flex flex-col items-center justify-center p-8 text-center;
+  }
+}
+
+/* 4. Utilidades Customizadas */
+@layer utilities {
+  .logo-shadow {
+    filter: drop-shadow(0 0 2em rgba(100, 108, 255, 0.67));
+  }
+}

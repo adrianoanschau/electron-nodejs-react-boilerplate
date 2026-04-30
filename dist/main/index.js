@@ -64,10 +64,18 @@ var SupabaseProductRepository = class {
 var import_config2 = require("dotenv/config");
 function createWindow() {
   const mainWindow = new import_electron2.BrowserWindow({
-    width: 900,
-    height: 670,
+    width: 1200,
+    height: 960,
+    frame: false,
+    titleBarStyle: "hidden",
+    titleBarOverlay: {
+      color: "#1a1a1a",
+      symbolColor: "#f8f8fd",
+      height: 45
+    },
     webPreferences: {
       preload: import_path.default.join(__dirname, "../preload/index.js"),
+      contextIsolation: true,
       sandbox: true
     }
   });
